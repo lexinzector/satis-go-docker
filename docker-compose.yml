@@ -1,0 +1,18 @@
+services:
+  satis:
+    image: lexinzector/satis-go:1.0
+    container_name: satis-go
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    volumes:
+      - satis-data:/opt/satis-go/data
+    environment:
+        SATIS_GO_BIND: "0.0.0.0:8080"
+        SATIS_GO_DB_PATH: "/opt/satis-go/data"
+        SATIS_GO_REPOUI_PATH: "/usr/share/nginx/html" 
+        SATIS_GO_REPO_NAME: "myvendor/mysatis"
+        SATIS_GO_REPO_HOST: "http://localhost:8080"
+
+volumes:
+  satis-data:
